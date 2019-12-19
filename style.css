@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css?family=Courier+Prime:400,700&display=swap');
 body {
     margin: 0;
     padding: 0;
@@ -8,9 +9,34 @@ body {
     width: 100vw;
     height: 100vh;
     background: #222;
+    font-family: 'Courier Prime', monospace;
 }
 #game {
     background: #333;
     display: block;
     box-shadow: 2px 3px 3px #111;
+}
+#pause {
+    display: flex;
+    color: #DDD;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    z-index: 999999;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, .8);
+}
+[hiddem] {
+    display: none !important;
+}
+.placar {
+    display: flex;
+    justify-content: space-between;
+    color: #FFF;
+    margin-bottom: 10px;
+    font-size: 11px;
+}
+.placar b {
+    font-size: 22px;
 }

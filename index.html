@@ -8,9 +8,18 @@
     <link rel="stylesheet" href="./style.css">
 </head>
 <body>
+    <div id="pause">
+        PAUSE
+    </div>
     <audio id="game_over" hidden src="./sons/game-over.mp3" controls ></audio>
     <audio id="moeda" hidden src="./sons/moeda.mp3" controls ></audio>
-    <canvas id="game" width="300" height="300"></canvas>
+    <div>
+        <div class="placar">
+            <span>Pontos <b id="pontos">0</b> </span>
+            <span>Recorde <b id="recorde">0</b> </span>
+        </div>
+        <canvas id="game" width="300" height="300"></canvas>
+    </div>
     <script src="./fanction.js"></script>
     <script src="./main.js"></script>
 </body>

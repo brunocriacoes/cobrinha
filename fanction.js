@@ -78,6 +78,7 @@ function anda()
 
 function morreu()
 {
+    recorder()
     estado.jogador.x       = 0
     estado.jogador.y       = 0
     estado.jogador.pixels  = []
@@ -137,15 +138,46 @@ function posicaoAleatoria()
     return Math.floor( Math.random()  * estado.game.cena ) * estado.game.box
 }
 
+function recorder()
+{
+    let recorde = localStorage.getItem('recorde') || 0
+    let pontos  = estado.jogador.pixels.length
+    if( pontos > recorde ) 
+    {
+        localStorage.setItem( 'recorde', pontos ) 
+    }
+}
+
 function game() 
 {
+    pause()
     limparCena()
-    anda()
-    tropecarNoProprioPe()
-    colide()
-    falalit()
+    if( estado.game.status )
+    {
+        anda()
+        tropecarNoProprioPe()
+        colide()
+        falalit()
+    }
     desenhaPixel()
     desenhaFruta()
+    contador()
+}
+
+function pause()
+{
+    let popup = document.querySelector('#pause')
+    if( estado.game.status ) {
+        popup.setAttribute( 'hiddem', '' )
+    }else {
+        popup.removeAttribute( 'hiddem' )
+
+    }
+}
+function contador()
+{
+    document.querySelector('#pontos').innerHTML = estado.jogador.pixels.length - 1
+    document.querySelector('#recorde').innerHTML = localStorage.getItem( 'recorde' ) || 0
 }
 
 function desenhaPixel()
@@ -157,6 +189,10 @@ function desenhaPixel()
 }
 
 window.addEventListener( 'keydown', function( e ) {
+    if(  e.key =="Enter" ) 
+    {
+        estado.game.status = !estado.game.status
+    }
     let direcaoAtual  = estado.controle[ e.key ] || estado.jogador.direcao
     let direcaoPasada = estado.jogador.direcao
     if(  estado.neutralidade[direcaoAtual] != estado.neutralidade[direcaoPasada]  )
